@@ -3,9 +3,9 @@ import featuredImg from "../../../assets/home/featured.jpg"
 import './Featured.css'
 const Featured = () => {
     return (
-        <div className="my-20 bg-fixed featured-item text-white pt-6">
+        <div className="lg:my-20 bg-fixed featured-item text-white pt-6">
             <SectionTitle subHeading={'Check it out'} heading={'Featured'}></SectionTitle>
-            <div className="flex justify-center items-center pb-20 mt-12 px-36 bg-slate-400 bg-opacity-40">
+            <div className="flex flex-col md:flex-row justify-center items-center pb-20 mt-12 px-4 lg:px-36 bg-slate-400 bg-opacity-40">
                 <div>
                     <img src={featuredImg} alt="" />
                 </div>
