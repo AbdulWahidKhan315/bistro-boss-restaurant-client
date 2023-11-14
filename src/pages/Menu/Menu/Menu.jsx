@@ -21,7 +21,7 @@ const Menu = () => {
             <Helmet>
                 <title>Bistro Boss | Menu</title>
             </Helmet>
-            <Cover img={img} heading={'Our Menu'} description={'Would you like to try a dish?'}></Cover>
+            <Cover img={img} title={'Our Menu'} description={'Would you like to try a dish?'}></Cover>
             <SectionTitle subHeading={'Do not miss'} heading={"Today's offer"}></SectionTitle>
             <MenuCategory item={offered} btnText={'ORDER YOUR FAVOURITE FOOD'}></MenuCategory>   
             <MenuCategory

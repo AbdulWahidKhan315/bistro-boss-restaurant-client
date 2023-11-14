@@ -13,7 +13,7 @@ const ChefRecommends = () => {
                         <h2 className="card-title">Caeser Salad</h2>
                         <p>Lettuce, Eggs, Parmesan Cheese, Chicken <br />  Breast Fillets.</p>
                         <div className="card-actions justify-center">
-                            <button className="btn text-[#BB8506] border-b-4 border-[#BB8506] border-0 hover:bg-black">Buy Now</button>
+                            <button className="btn text-[#BB8506] border-b-4 border-[#BB8506] border-0 hover:bg-black">add to cart</button>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@ const ChefRecommends = () => {
                         <h2 className="card-title">Caeser Pizza</h2>
                         <p>Lettuce, Eggs, Parmesan Cheese, Chicken <br />  Breast Fillets.</p>
                         <div className="card-actions justify-center">
-                            <button className="btn text-[#BB8506] border-b-4 border-[#BB8506] border-0 hover:bg-black">Buy Now</button>
+                            <button className="btn text-[#BB8506] border-b-4 border-[#BB8506] border-0 hover:bg-black">add to cart</button>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@ const ChefRecommends = () => {
                         <h2 className="card-title">Caeser Soup</h2>
                         <p>Lettuce, Eggs, Parmesan Cheese, Chicken <br />  Breast Fillets.</p>
                         <div className="card-actions justify-center">
-                            <button className="btn text-[#BB8506] border-b-4 border-[#BB8506] border-0 hover:bg-black">Buy Now</button>
+                            <button className="btn text-[#BB8506] border-b-4 border-[#BB8506] border-0 hover:bg-black">add to cart</button>
                         </div>
                     </div>
                 </div>
