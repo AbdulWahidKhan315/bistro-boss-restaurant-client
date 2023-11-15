@@ -28,28 +28,28 @@ const Menu = () => {
              item={desserts}
              img={dessertImg} 
              btnText={'ORDER YOUR FAVOURITE DESSERTS'} 
-             title={'DESSERTS'} 
+             title={'dessert'} 
              description={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}></MenuCategory> 
 
             <MenuCategory
              item={pizza}
              img={pizzatImg} 
              btnText={'ORDER YOUR FAVOURITE PIZZA'} 
-             title={'PIZZA'} 
+             title={'pizza'} 
              description={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}></MenuCategory>   
 
             <MenuCategory
              item={salad}
              img={saladImg} 
              btnText={'ORDER YOUR FAVOURITE SALAD'} 
-             title={'SALAD'} 
+             title={'salad'} 
              description={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}></MenuCategory>   
 
             <MenuCategory
              item={soup}
              img={soupImg} 
              btnText={'ORDER YOUR FAVOURITE SOUP'} 
-             title={'SOUP'} 
+             title={'soup'} 
              description={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'}></MenuCategory>   
         </div>
     );
