@@ -2,15 +2,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure/useAxiosSecure";
+import useCart from "../../hooks/useCart/useCart";
 
 const OrderCart = ({ item }) => {
     const { user } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+    const [, refetch] = useCart();
     const { image, name, price, recipe, _id } = item;
-    const handleAddToCart = (food) => {
-        console.log(food)
+
+    const handleAddToCart = () => {
         if (user && user.email) {
             //send cart items into db
             const cartItem = {
@@ -20,18 +22,19 @@ const OrderCart = ({ item }) => {
                 image,
                 price
             }
-            axiosSecure.post('/carts',cartItem)
-            .then(res => {
-                if(res.data.insertedId){
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${name} Added to your Cart!`,
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                }
-            })
+            axiosSecure.post('/carts', cartItem)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: `${name} Added to your Cart!`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        refetch();
+                    }
+                })
         } else {
             Swal.fire({
                 title: "Your are not Logged In",
@@ -43,7 +46,7 @@ const OrderCart = ({ item }) => {
                 confirmButtonText: "Yes, Login!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login',{state:{from: location}})
+                    navigate('/login', { state: { from: location } })
                 }
             });
         }
@@ -58,7 +61,7 @@ const OrderCart = ({ item }) => {
                     <p>{recipe}</p>
                     <div className="card-actions justify-center">
                         <button
-                            onClick={() => handleAddToCart(item)}
+                            onClick={handleAddToCart}
                             className="btn text-[#BB8506] border-b-4 border-[#BB8506] border-0 hover:bg-black hover:border-black">add to cart</button>
                     </div>
                 </div>
