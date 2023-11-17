@@ -1,37 +1,52 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 const SignUp = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
     const onSubmit = data => {
         createUser(data.email, data.password)
             .then(() => {
-                Swal.fire({
-                    title: "Sign Up successfully.",
-                    showClass: {
-                        popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                  `
-                    },
-                    hideClass: {
-                        popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                  `
-                    }
-                });
+                updateUserProfile(data.name, data.PhotoURL)
+                    .then(() => {
+                        Swal.fire({
+                            title: "Sign Up successfully.",
+                            showClass: {
+                                popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                            },
+                            hideClass: {
+                                popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                            }
+                        });
+                        reset();
+                        navigate('/')
+                    })
+                    .catch(err =>{
+                        Swal.fire({
+                            title: 'Error!',
+                            text: `${err.message}`,
+                            icon: 'error',
+                            confirmButtonText: 'Cool'
+                          })
+                    })
             })
     }
 
@@ -55,6 +70,13 @@ const SignUp = () => {
                                 </label>
                                 <input type="text" placeholder="Name" {...register("name", { required: true })} name="name" className="input input-bordered" />
                                 {errors.name && <span className="text-red-600">Name field is required</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">PhotoURL</span>
+                                </label>
+                                <input type="text" placeholder="PhotoURL" {...register("PhotoURL", { required: true })} className="input input-bordered" />
+                                {errors.PhotoURL && <span className="text-red-600">PhotoURL field is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
