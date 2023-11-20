@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 const SignUp = () => {
+    const axiosPublic = useAxiosPublic();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -19,25 +22,34 @@ const SignUp = () => {
             .then(() => {
                 updateUserProfile(data.name, data.PhotoURL)
                     .then(() => {
-                        Swal.fire({
-                            title: "Sign Up successfully.",
-                            showClass: {
-                                popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        animate__faster
-                      `
-                            },
-                            hideClass: {
-                                popup: `
-                        animate__animated
-                        animate__fadeOutDown
-                        animate__faster
-                      `
+                        const userInfo = {
+                            name: data.name,
+                            email:data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                        .then(res => {
+                            if(res.data.insertedId){
+                                Swal.fire({
+                                    title: "Sign Up successfully.",
+                                    showClass: {
+                                        popup: `
+                                animate__animated
+                                animate__fadeInUp
+                                animate__faster
+                              `
+                                    },
+                                    hideClass: {
+                                        popup: `
+                                animate__animated
+                                animate__fadeOutDown
+                                animate__faster
+                              `
+                                    }
+                                });
+                                reset();
+                                navigate('/')
                             }
-                        });
-                        reset();
-                        navigate('/')
+                        })
                     })
                     .catch(err =>{
                         Swal.fire({
@@ -61,6 +73,7 @@ const SignUp = () => {
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold">Sign Up now!</h1>
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <SocialLogin></SocialLogin>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
