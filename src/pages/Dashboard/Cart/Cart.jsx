@@ -2,9 +2,11 @@ import { FaTrashAlt } from "react-icons/fa";
 import useCart from "../../../hooks/useCart/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const [cart,refetch] = useCart();
+    const [cart, refetch] = useCart();
+    console.log(cart)
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
     const axiosSecure = useAxiosSecure();
 
@@ -39,7 +41,11 @@ const Cart = () => {
             <div className="flex justify-evenly">
                 <h2 className="text-4xl">Items: {cart.length}</h2>
                 <h2 className="text-4xl">Total Price: {totalPrice}</h2>
-                <button className="btn bg-orange-400">Pay</button>
+                {cart.length > 0 ? <Link to='/dashboard/payment'>
+                    <button className="btn bg-orange-400">Pay</button>
+                </Link> :
+                <button disabled className="btn bg-orange-400">Pay</button>
+                }
             </div>
             <div className="my-10">
                 <div className="overflow-x-auto">
